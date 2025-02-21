@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /Prueba/
+
+    # Evita el bucle infinito asegurando que no redirige si ya está en index.php
+    RewriteCond %{REQUEST_URI} !index.php
+
+    # Asegura que el archivo o directorio no exista antes de redirigir
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Redirige todo a index.php
+    RewriteRule ^(.*)$ index.php/$1 [L]
+</IfModule>
